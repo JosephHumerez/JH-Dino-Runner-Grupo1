@@ -1,7 +1,5 @@
 from pygame.sprite import Sprite
 
-#holaaaa
-
 from utils.constants import RUNNING
 
 class Dinosaur(Sprite):
