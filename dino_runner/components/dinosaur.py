@@ -9,19 +9,19 @@ from utils.constants import (
     RUNNING_SHIELD,
     JUMPING_SHIELD,
     DEFAULT_TYPE,
-    SHIELD
+    SHIELD_TYPE
 )
 
 class Dinosaur(Sprite):
     X_POS= 50
-    Y_POS= 310
+    Y_POS= 300
     Y_POS_DUCK= 340
     JUMP_LEVEL= 8.5
 
     def __init__(self):
-        self.duck_img= {DEFAULT_TYPE:DUCKING, SHIELD:DUCKING_SHIELD}
-        self.run_img= {DEFAULT_TYPE:RUNNING, SHIELD:RUNNING_SHIELD}
-        self.jump_img= {DEFAULT_TYPE:JUMPING, SHIELD:JUMPING_SHIELD}
+        self.duck_img= {DEFAULT_TYPE:DUCKING, SHIELD_TYPE:DUCKING_SHIELD}
+        self.run_img= {DEFAULT_TYPE:RUNNING, SHIELD_TYPE:RUNNING_SHIELD}
+        self.jump_img= {DEFAULT_TYPE:JUMPING, SHIELD_TYPE:JUMPING_SHIELD}
         self.type= DEFAULT_TYPE
         self.image = self.run_img[self.type][0]
         self.dino_rect = self.image.get_rect()
@@ -55,24 +55,23 @@ class Dinosaur(Sprite):
             self.dino_jump= False
         
         if self.step_index >= 10:
-            self.step_index= 0
+            self.step_index = 0
 
 
     def draw(self, screen):
         screen.blit(self.image,(self.dino_rect.x, self.dino_rect.y))
     
     def run(self):
-        self.image= self.run_img[self.type][self.step_index // 5 ]
+        self.image= self.run_img[self.type][self.step_index // 5]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.X_POS
         self.dino_rect.y = self.Y_POS
         self.step_index += 1
-
     def duck(self):
-        self.image= self.duck_img[self.type][self.step_index // 5 ]
+        self.image= self.duck_img[self.type][self.step_index // 5]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS_DUCK
+        self.dino_rect.y = self.Y_POS_DUCK 
         self.step_index += 1
 
     def jump(self):
