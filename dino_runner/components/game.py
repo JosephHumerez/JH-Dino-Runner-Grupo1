@@ -33,7 +33,8 @@ class Game:
                 self.playing = False
 
     def update(self):
-        self.dinosaur.update()
+        user_input = pygame.key.get_pressed()
+        self.dinosaur.update(user_input)
 
     def draw(self):
         self.clock.tick(FPS)
