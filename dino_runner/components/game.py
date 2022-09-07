@@ -18,6 +18,7 @@ class Game:
         self.y_pos_bg = 380
         self.dinosaur = Dinosaur()
         self.obstacle_manager = ObstacleManager()
+        self.points= 0 
 
     def run(self):
         # Game loop: events - update - draw
@@ -39,6 +40,7 @@ class Game:
         self.obstacle_manager.update()
 
     def draw(self):
+        self.show_score()
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
         self.draw_background()
@@ -55,3 +57,6 @@ class Game:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
+
+    def show_score(self):
+        pass
