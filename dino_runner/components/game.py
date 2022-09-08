@@ -24,12 +24,16 @@ class Game:
 
     def run(self):
         # Game loop: events - update - draw
+        self.reset_components()
         self.playing = True
         while self.playing:
             self.events()
             self.update()
             self.draw()
-        pygame.quit()
+
+    def reset_components(self):
+        self.reset_components()
+
 
     def execute(self):
         while self.game_running:

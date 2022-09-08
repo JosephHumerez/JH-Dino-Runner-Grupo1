@@ -4,8 +4,6 @@ from components.obstacles.bird import Bird
 from utils.constants import LARGE_CACTUS, SMALL_CACTUS, BIRD
 
 
-
-
 class ObstacleManager():
     def __init__(self):
         self.obstacles = []

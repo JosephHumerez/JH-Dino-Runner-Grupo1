@@ -2,7 +2,13 @@ import random
 from components.obstacles.obstacle import Obstacle
 
 class Bird(Obstacle):
-    def __init__(self, image):
-        self.index = random.randint(0,1)
-        super().__init__(image, self.index)
-        self.rect.y = 320
+    def __init__(self, image, y):
+        super().__init__(image, 0)
+        self.rect.y = y
+        self.step_index = 0
+
+    def update(self, obstacle_speed, obstacles):
+        super().update(obstacle_speed, obstacles)
+        
+        self.index = (self.step_index % 10) // 5
+        self.step_index += 1
