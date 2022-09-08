@@ -1,5 +1,5 @@
 import pygame
-from components.obstacle_manager import ObstacleManager
+from components.obstacles.obstacle_manager import ObstacleManager
 from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 
 from components.dinosaur import Dinosaur
