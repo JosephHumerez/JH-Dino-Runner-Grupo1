@@ -1,9 +1,11 @@
 import pygame
 
 from components.obstacles.obstacle_manager import ObstacleManager
-from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, GAME_OVER
+from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, GAME_OVER
 from utils import text_utils
+
 from components.dinosaur import Dinosaur
+from components.powerups.powerup_manager import PowerUpManager
 
 class Game:
     def __init__(self):
@@ -21,6 +23,8 @@ class Game:
         self.game_running = True
         self.dinosaur = Dinosaur()
         self.obstacle_manager = ObstacleManager()
+        self.powerup_manager= PowerUpManager()
+        self.dinosaur_shield= False
 
     def run(self):
         # Game loop: events - update - draw
@@ -35,6 +39,7 @@ class Game:
     
     def reset(self):
         self.obstacle_manager.obstacles.clear()
+        self.powerup_manager.reset_power_ups()
         self.playing = True
         self.points = 0
 
@@ -47,6 +52,7 @@ class Game:
     def update(self):
         self.dinosaur.update(pygame.key.get_pressed())
         self.obstacle_manager.update(self, self.dinosaur)
+        self.powerup_manager.update(self)
 
     def execute(self):
         while self.game_running:
@@ -62,20 +68,17 @@ class Game:
         if self.games_played == 0:
             self.show_options_menu("Press any Key to Start")
         else:
-            self.show_options_menu("Press any Key to play again")
+            self.show_options_menu("Press any Key to Restart")
             self.show_score()
 
-            self.screen.blit(GAME_OVER, ((SCREEN_WIDTH // 2) -195, (SCREEN_HEIGHT // 2) -100))
+            self.screen.blit(GAME_OVER, (HALF_SCREEN_WIDTH -195, HALF_SCREEN_HEIGHT -100))
 
         pygame.display.update()
 
         self.handle_key_event_menu()
 
     def show_options_menu(self, text):
-        half_screen_height = SCREEN_HEIGHT // 2
-        half_screen_width = SCREEN_WIDTH // 2
-
-        text, text_rect = text_utils.get_text_element(text, half_screen_width, half_screen_height)
+        text, text_rect = text_utils.get_text_element(text, HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT)
 
         self.screen.blit(text, text_rect)
 
@@ -97,6 +100,7 @@ class Game:
         self.show_score()
         self.dinosaur.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
+        self.powerup_manager.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 

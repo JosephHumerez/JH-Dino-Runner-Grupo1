@@ -32,6 +32,7 @@ class Dinosaur(Sprite):
         self.dino_jump= False
         self.jump_vel= self.JUMP_LEVEL
         self.step_index= 0
+        self.isShieldType= False
 
     def update(self, user_input):
         if self.dino_jump:

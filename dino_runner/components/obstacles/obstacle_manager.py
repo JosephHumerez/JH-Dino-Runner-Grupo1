@@ -18,8 +18,11 @@ class ObstacleManager():
             obstacle.update(game.game_speed, self.obstacles)
 
             if dinosaur.dino_rect.colliderect(obstacle.rect):
-                pygame.time.delay(500)
-                game.playing = False
+                if not game.dinosaur_shield:
+                    pygame.time.delay(700)
+                    game.playing = False
+                else:
+                    self.obstacles.remove(obstacle)
     
     def generate_obstacle(self):
         index_random = randint(0, 2)
