@@ -76,5 +76,5 @@ SHIELD_TYPE = "shield"
 
 GAME_OVER= pygame.image.load(os.path.join(IMG_DIR, 'Other/GameOver.png'))
 
-#MUSIC= pygame.mixer.Sound("D:\Python\my-venv\dino_runner\assets\Other\Song.mp3")
+#MUSIC= pygame.mixer.Sound("D:\Python\my-venv\dino_runner\assets\Other\song_mix_test.mp3")
 
