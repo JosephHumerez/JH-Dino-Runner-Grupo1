@@ -22,7 +22,7 @@ class PowerUpManager:
                 game.dinosaur.type = power_up.type
                 self.active = True
 
-        if self.time > 75:
+        if self.time > 100:
             game.dinosaur.type = DEFAULT_TYPE
             self.active = False
             self.time = 0
