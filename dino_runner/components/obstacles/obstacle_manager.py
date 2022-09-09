@@ -4,6 +4,7 @@ from random import randint
 from components.obstacles.cactus import Cactus
 from components.obstacles.bird import Bird
 from utils.constants import LARGE_CACTUS, SMALL_CACTUS, BIRD
+from components.powerups.powerup_manager import PowerUpManager
 
 
 class ObstacleManager():
@@ -23,6 +24,8 @@ class ObstacleManager():
                     game.playing = False
                 else:
                     self.obstacles.remove(obstacle)
+                    PowerUpManager.reset_power_ups(self)
+
     
     def generate_obstacle(self):
         index_random = randint(0, 2)
