@@ -23,8 +23,7 @@ class Game:
         self.game_running = True
         self.dinosaur = Dinosaur()
         self.obstacle_manager = ObstacleManager()
-        self.powerup_manager= PowerUpManager()
-        self.dinosaur_shield= False
+        self.powerup_manager = PowerUpManager()
 
     def run(self):
         # Game loop: events - update - draw
@@ -38,8 +37,8 @@ class Game:
         self.games_played += 1
     
     def reset(self):
-        self.obstacle_manager.obstacles.clear()
-        self.powerup_manager.reset_power_ups()
+        self.obstacle_manager.reset()
+        self.powerup_manager.reset()
         self.playing = True
         self.points = 0
 
@@ -119,3 +118,4 @@ class Game:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
+    

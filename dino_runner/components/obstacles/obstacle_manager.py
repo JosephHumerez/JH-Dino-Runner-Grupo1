@@ -3,7 +3,7 @@ import pygame
 from random import randint
 from components.obstacles.cactus import Cactus
 from components.obstacles.bird import Bird
-from utils.constants import LARGE_CACTUS, SMALL_CACTUS, BIRD
+from utils.constants import LARGE_CACTUS, SMALL_CACTUS, BIRD, DEFAULT_TYPE,SHIELD_TYPE
 
 class ObstacleManager():
     def __init__(self):
@@ -17,12 +17,14 @@ class ObstacleManager():
             obstacle.update(game.game_speed, self.obstacles)
 
             if dinosaur.dino_rect.colliderect(obstacle.rect):
-                if not game.dinosaur_shield:
+                if game.dinosaur.type == SHIELD_TYPE:
+                    game.dinosaur.type = DEFAULT_TYPE
+                    self.obstacles.pop()
+                    game.powerup_manager.active = 0
+                    game.powerup_manager.time = 0
+                else:
                     pygame.time.delay(700)
                     game.playing = False
-                else:
-                    self.obstacles.remove(obstacle)
-                    
 
     
     def generate_obstacle(self):
@@ -38,3 +40,6 @@ class ObstacleManager():
     def draw(self, screen):
         for obstacle in self.obstacles:
             obstacle.draw(screen)
+
+    def reset(self):
+        self.obstacles.clear()
