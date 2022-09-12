@@ -1,7 +1,7 @@
 import pygame
 
 from components.obstacles.obstacle_manager import ObstacleManager
-from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, GAME_OVER #MUSIC
+from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, GAME_OVER
 from utils import text_utils
 
 from components.dinosaur import Dinosaur
@@ -29,8 +29,6 @@ class Game:
         # Game loop: events - update - draw
         self.reset()
         while self.playing:
-            #pygame.mixer.music.load(MUSIC)
-            #pygame.mixer.music.play()
             self.events()
             self.update()
             self.draw()
